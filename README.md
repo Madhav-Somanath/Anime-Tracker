@@ -8,7 +8,7 @@ It's pretty hard to keep track of anime these days. For Otakus like me who watch
 
 ### v1.0: "Zangetsu"
 A simple command-line app that uses a text file as the database.
-
+Don't have Python installer? Check out the version for [windows](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.0/windows)
 ![alt text](https://github.com/ashwindasr/Anime-Tracker/blob/master/assets/images/image.png)
 
 ### v2.0: "Zabimaru" (Under Development)
