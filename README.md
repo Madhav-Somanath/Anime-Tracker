@@ -9,7 +9,7 @@ It's pretty hard to keep track of anime these days. For Otakus like me who watch
 ### v1.0: "Zangetsu"
 A simple command-line app that uses a text file as the database.
 
-![alt text](https://github.com/ashwindasr/Anime-Tracker/blob/master/resources/images/image.png)
+![alt text](https://github.com/ashwindasr/Anime-Tracker/blob/master/assets/images/image.png)
 
 ### v2.0: "Zabimaru" (Under Development)
 A minimalistic GUI app built using Tkinter.
