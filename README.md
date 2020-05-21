@@ -2,9 +2,7 @@
 ## About
 A Python app to keep track of your anime progress.
 ## Description
-It's pretty hard to keep track of anime these days. I'll probably watch around 5-10 anime per season, so its pretty hard to remember which episode it was the previous week. Was it ep 7? Or was it 6? 
-
-Since I was brushing up on Python, I thought I might as well build an app to keep track of all the current anime.
+It's pretty hard to keep track of anime these days. I'll probably watch around 5-10 anime per season, so its quite difficult to remember which episode it was the previous week. Was it ep 7? Or was it 6? 
 
 ## Versions
 
