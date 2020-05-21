@@ -1,3 +1,7 @@
+# Relative path to the database text file
+DATABASE_PATH = "resources/anime.txt"
+
+
 def add_anime(anime_name, episodes, current_episode_=0):
     """
     Function to add a new anime to the database /resources/anime.txt
@@ -10,7 +14,7 @@ def add_anime(anime_name, episodes, current_episode_=0):
         None
     """
 
-    with open("resources/anime.txt", "a") as file:
+    with open(DATABASE_PATH, "a") as file:
         file.writelines(f"{anime_name},{current_episode_},{episodes}\n")
 
     print(f"\nSuccess! Added {anime_name} to database\n\n")
@@ -31,7 +35,7 @@ def anime_exists(anime_name):
         False
     """
 
-    with open("resources/anime.txt", "r") as file:
+    with open(DATABASE_PATH, "r") as file:
         for line in file:
             if anime_name == line.split(",")[0]:
                 return True
@@ -49,7 +53,7 @@ def update_anime(anime_name, episode):
         None
     """
     anime_data = []
-    with open("resources/anime.txt", "r") as file:
+    with open(DATABASE_PATH, "r") as file:
         anime_data = file.readlines()
 
     for idx, anime_ in enumerate(anime_data):
@@ -59,7 +63,7 @@ def update_anime(anime_name, episode):
             break
 
     anime_data.sort()
-    with open("resources/anime.txt", "w") as file:
+    with open(DATABASE_PATH, "w") as file:
         file.writelines(anime_data)
 
     print(f"\nSuccess! Updated the episode count of {anime_name}\n\n")
@@ -81,7 +85,7 @@ def anime_progress(anime_name):
         ('3', '12')
     """
 
-    with open("resources/anime.txt", "r") as file:
+    with open(DATABASE_PATH, "r") as file:
         for line in file:
             line_list = line.split(",")
             if line_list[0] == anime_name:
@@ -98,7 +102,7 @@ def anime_progress_all():
         tuple of tuples: Tuple of Tuples in the format ((anime-name, current-episode, total-episode))
     """
     all_anime_ = []
-    with open("resources/anime.txt", "r") as file:
+    with open(DATABASE_PATH, "r") as file:
         for line in file:
             line_list = line.split(",")
             all_anime_.append(tuple([line_list[0], line_list[1], line_list[2].rstrip("\n")]))
