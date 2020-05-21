@@ -1,6 +1,6 @@
 # Anime-Tracker
 
-## Description
+## About
 
 A Python app to keep track of your anime progress.
 
