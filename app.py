@@ -24,6 +24,11 @@ def anime_exists(anime_name):
         anime_name (str): Name of the anime.
     Returns:
         bool: True if the anime exists else False.
+    Doctest:
+        >>> anime_exists("Tower of God")
+        True
+        >>> anime_exists("Apple")
+        False
     """
 
     with open("resources/anime.txt", "r") as file:
@@ -88,11 +93,9 @@ def anime_progress_all():
     Function to list the current progress of the all the anime in the database.
 
     Args:
+        No arguments
     Returns:
         tuple of tuples: Tuple of Tuples in the format ((anime-name, current-episode, total-episode))
-    Doctest:
-        >>> anime_progress_all()
-        (('Tower of God', '0', '12'), ('Gintama', '3', '12'))
     """
     all_anime_ = []
     with open("resources/anime.txt", "r") as file:
