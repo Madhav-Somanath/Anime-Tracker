@@ -15,7 +15,7 @@ def add_anime(anime_name, episodes, current_episode_=0):
     """
 
     with open(DATABASE_PATH, "a") as file:
-        file.writelines(f"{anime_name},{current_episode_},{episodes}\n")
+        file.writelines(f"{anime_name}~{current_episode_}~{episodes}\n")
 
     print(f"\nSuccess! Added {anime_name} to database\n\n")
 
@@ -52,6 +52,7 @@ def update_anime(anime_name, episode):
     Returns:
         None
     """
+    anime_data = []
     with open(DATABASE_PATH, "r") as file:
         anime_data = file.readlines()
 
@@ -60,7 +61,7 @@ def update_anime(anime_name, episode):
     for idx, anime_ in enumerate(anime_data):
         line_list = anime_.split("~")
         if anime_name in line_list[0]:
-            anime_data[idx] = f"{line_list[0]},{episode},{line_list[2]}"
+            anime_data[idx] = f"{line_list[0]}~{episode}~{line_list[2]}"
             break
 
     anime_data.sort()
