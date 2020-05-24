@@ -128,7 +128,7 @@ def add_anime(anime_name, episodes, current_episode_=0):
     Args:
         anime_name (str): Name of the anime.
         episodes (int): Total episodes in the anime.
-        current_episode_ (int) : Current episode count
+        current_episode_ (int) : Current episode count. Default is 0 for new anime.
     Returns:
         None
     """
@@ -221,7 +221,8 @@ def anime_progress_all():
 
 def main():
     while True:
-        choice = input("""Hello Ash, What do you want to do?
+        choice = input("""Kon'nichiwa(こんにちは)! Hajimemashite(はじめまして)!
+What do you want to do?
 1. Add new anime
 2. Update progress on existing anime
 3. View progress on existing anime
