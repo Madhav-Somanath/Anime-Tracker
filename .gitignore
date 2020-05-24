@@ -4,4 +4,5 @@ v1.0/build
 v1.0/dist
 v1.0/app.py
 app.spec
+.idea
 
