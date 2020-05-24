@@ -1,4 +1,3 @@
-# Relative path to the database text file
 DATABASE_PATH = "resources/anime.txt"
 
 
@@ -28,11 +27,6 @@ def anime_exists(anime_name):
         anime_name (str): Name of the anime.
     Returns:
         bool: True if the anime exists else False.
-    Doctest:
-        >>> anime_exists("Tower of God")
-        True
-        >>> anime_exists("Apple")
-        False
     """
 
     with open(DATABASE_PATH, "r") as file:
@@ -80,11 +74,6 @@ def anime_progress(anime_name):
           anime_name (str): Name of the anime.
     Returns:
         (tuple): (Current episode, Total episodes)
-    Doctest:
-        >>> anime_progress("Tower of God")
-        ('0', '12')
-        >>> anime_progress("Gintama")
-        ('3', '12')
     """
 
     with open(DATABASE_PATH, "r") as file:
