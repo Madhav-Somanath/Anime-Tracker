@@ -192,14 +192,14 @@ def anime_progress(anime_name):
     Args:
           anime_name (str): Name of the anime.
     Returns:
-        (tuple): (Current episode, Total episodes)
+        (tuple): (Full name of anime, Current episode, Total episodes)
     """
 
     with open(DATABASE_PATH, "r") as file:
         for line in file:
             line_list = line.split("~")
             if anime_name in line_list[0]:
-                return tuple([line_list[1], line_list[2].rstrip("\n")])
+                return tuple([line_list[0], line_list[1], line_list[2].rstrip("\n")])
 
 
 def anime_progress_all():
@@ -248,8 +248,9 @@ Enter your choice:> """)
         elif choice == "3":
             anime = input("Enter the name of the anime:> ")
             if anime_exists(anime):
-                current, total = anime_progress(anime)
-                print(f"{anime}: {current}/{total}\n")
+                anime_full_name, current, total = anime_progress(anime)
+                print("\nProgress:")
+                print(f"{anime_full_name}: {current}/{total}\n")
             else:
                 print("\nThe anime does not exist.\n")
         elif choice == "4":
