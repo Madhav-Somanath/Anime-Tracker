@@ -37,7 +37,7 @@ def anime_exists(anime_name):
 
     with open(DATABASE_PATH, "r") as file:
         for line in file:
-            if anime_name in line.split(",")[0]:
+            if anime_name in line.split("~")[0]:
                 return True
     return False
 
@@ -52,14 +52,13 @@ def update_anime(anime_name, episode):
     Returns:
         None
     """
-    anime_data = []
     with open(DATABASE_PATH, "r") as file:
         anime_data = file.readlines()
 
     # for idx, anime_ in enumerate(anime_data):
     #     print(f"{idx + 1}. {anime_[0]} {anime_[]}/{anime_[2]}")
     for idx, anime_ in enumerate(anime_data):
-        line_list = anime_.split(",")
+        line_list = anime_.split("~")
         if anime_name in line_list[0]:
             anime_data[idx] = f"{line_list[0]},{episode},{line_list[2]}"
             break
@@ -89,7 +88,7 @@ def anime_progress(anime_name):
 
     with open(DATABASE_PATH, "r") as file:
         for line in file:
-            line_list = line.split(",")
+            line_list = line.split("~")
             if anime_name in line_list[0]:
                 return tuple([line_list[1], line_list[2].rstrip("\n")])
 
@@ -106,12 +105,12 @@ def anime_progress_all():
     all_anime_ = []
     with open(DATABASE_PATH, "r") as file:
         for line in file:
-            line_list = line.split(",")
+            line_list = line.split("~")
             all_anime_.append(tuple([line_list[0], line_list[1], line_list[2].rstrip("\n")]))
     return tuple(all_anime_)
 
 
-def main_function():
+def main():
     while True:
         choice = input("""Hello Ash, What do you want to do?
 1. Add new anime
@@ -171,4 +170,4 @@ if __name__ == '__main__':
             print(f"{anime[0]}: {anime[1]}/{anime[2]}\n", end="")
         print()
 
-    main_function()
+    main()
