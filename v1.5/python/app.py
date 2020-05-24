@@ -221,7 +221,7 @@ def anime_progress_all():
 
 def main():
     while True:
-        choice = input("""Kon'nichiwa(こんにちは)! Hajimemashite(はじめまして)!
+        choice = input("""Kon'nichiwa! Hajimemashite!
 What do you want to do?
 1. Add new anime
 2. Update progress on existing anime
