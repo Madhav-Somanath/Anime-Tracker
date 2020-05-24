@@ -13,6 +13,9 @@ A simple command-line app that uses a text file as the database.
 
 Built for both [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.0/python) and [Windows](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.0/windows).
 
+### v1.5: "Tensa Zangetsu" (Under Development)
+Is downloading new episodes a hassle? Don't fret! Tensa Zangetsu does it for you!
+
 ### v2.0: "Zabimaru" (Under Development)
 A minimalistic GUI app built using Tkinter.
 
