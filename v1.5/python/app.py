@@ -220,6 +220,17 @@ def anime_progress_all():
 
 
 def main():
+    # Show initial progress
+    print("\nCurrent Watch list:")
+    print("-------------------\n")
+    all_anime = anime_progress_all()
+    if all_anime == ():
+        print("You are watching no anime currently\n")
+    else:
+        for anime in all_anime:
+            print(f"{anime[0]}: {anime[1]}/{anime[2]}\n", end="")
+        print()
+
     while True:
         choice = input("""Kon'nichiwa! Hajimemashite!
 What do you want to do?
@@ -270,13 +281,4 @@ Enter your choice:> """)
 
 
 if __name__ == '__main__':
-    print("Current Watch list:\n")
-    all_anime = anime_progress_all()
-    if all_anime == ():
-        print("You are watching no anime currently\n")
-    else:
-        for anime in all_anime:
-            print(f"{anime[0]}: {anime[1]}/{anime[2]}\n", end="")
-        print()
-
     main()
