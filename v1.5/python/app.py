@@ -1,9 +1,8 @@
 import os
 import re
 import ssl
-from urllib.request import urlopen
-
 import requests
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from qbittorrent import Client
 
