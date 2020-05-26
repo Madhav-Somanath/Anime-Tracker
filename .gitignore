@@ -1,8 +1,6 @@
-push_script.bat
-v1.0/__pycache__
-v1.0/build
-v1.0/dist
-v1.0/app.py
-app.spec
 .idea
-
+/v1.5/python/tests.py
+/v1.5/python/build/
+/v1.5/python/dist/
+/v1.5/python/push_script.bat
+/v1.5/python/app.spec
