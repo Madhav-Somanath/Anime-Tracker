@@ -363,13 +363,16 @@ Enter your choice:> """)
                                 add_torrent(f"{row[-1]}.torrent")
                                 print("Added to torrent!\n")
                                 os.remove(f"{row[-1]}.torrent")
-
                         else:
                             print("\nOkay!")
+                else:
+                    print(f"\n{anime[0]} is not this season's anime !")
 
                 print("Checked all anime!")
+
         elif choice == "7":
             break
+
         else:
             print("Invalid input\n")
 
