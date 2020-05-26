@@ -25,6 +25,7 @@ In this final build of the **Zangetsu** series, we migrate the data from our txt
 
 ### v2.0: "Zabimaru" (Under Development)
 A minimalistic GUI app built using Tkinter.
-### References
+
+## References
 The app versions are all named after [Zanpakutos](https://bleach.fandom.com/wiki/Zanpakut%C5%8D) from the anime [Bleach](https://en.wikipedia.org/wiki/Bleach_(TV_series)).
 
