@@ -1,8 +1,9 @@
 import os
 import re
 import ssl
-import requests
 from urllib.request import urlopen
+
+import requests
 from bs4 import BeautifulSoup
 from qbittorrent import Client
 
@@ -16,7 +17,6 @@ DATABASE_PATH = "resources/anime.txt"
 HORRIBLE_SUBS_NYAA = "https://nyaa.si/?f=0&c=0_0&q=%5BHorribleSubs%5D"
 
 
-# new
 def open_url(url: str) -> object:
     """
     A function that returns a Beautiful soup object after opening url.
@@ -52,7 +52,8 @@ def get_all_anime(total_pages: int) -> list:
     Get all the anime listed on all the pages of the website.
 
     :param total_pages: Total number of pages of HorribleSubs.
-    :return: List containing the names of all the anime.
+    :return: List containing the name and the torrent id of the episode.
+                eg: [('[HorribleSubs] Tower of God - 08 [720p].mkv', '1249430')]
     """
     titles = []
     for page in range(1, total_pages + 1):
@@ -430,7 +431,21 @@ def download_torrent(url: str) -> None:
     open(f'{file_name}.torrent', 'wb').write(r.content)
 
 
-# old
+def check_seasonal_anime(anime: str, all_anime: list) -> bool:
+    """
+    Function to check whether the anime is being aired this season.
+    Horrible subs only keeps the torrent files of the anime in the current season only,
+    on the nyaa.si website.
+    :param anime: Name of the anime to check.
+    :param all_anime: List of all the animes of the current season.
+    :return: True if anime in the current season else False.
+    """
+    for seasonal_anime in all_anime:
+        if anime in seasonal_anime[0]:
+            return True
+    return False
+
+
 def add_anime(anime_name, episodes, current_episode_=0):
     """
     Function to add a new anime to the database /resources/anime.txt
@@ -562,6 +577,7 @@ Enter your choice:> """)
                 add_anime(anime, total_episodes, current_episode)
             else:
                 print("Anime already exists")
+
         elif choice == "2":
             anime = input("Enter the name of the anime:> ")
             if anime_exists(anime):
@@ -569,6 +585,7 @@ Enter your choice:> """)
                 update_anime(anime, current_episode)
             else:
                 print("\nThe anime does not exist.\n")
+
         elif choice == "3":
             anime = input("Enter the name of the anime:> ")
             if anime_exists(anime):
@@ -577,6 +594,7 @@ Enter your choice:> """)
                 print(f"{anime_full_name}: {current}/{total}\n")
             else:
                 print("\nThe anime does not exist.\n")
+
         elif choice == "4":
             all_anime_ = anime_progress_all()
             if all_anime == ():
@@ -586,37 +604,40 @@ Enter your choice:> """)
                 for anime in all_anime_:
                     print(f"{anime[0]}: {anime[1]}/{anime[2]}\n", end="")
                 print()
-        elif choice == "5":
 
+        elif choice == "5":
             if not scrape_flag:
                 soup = open_url(HORRIBLE_SUBS_NYAA)
                 print('Connection established to website')
                 total_pages = find_total_pages(soup)
-                print(f"Total pages of Horrible Subs: {total_pages}")
+                print(f"Total pages of Horrible Subs in nyaa.si website: {total_pages}")
                 all_anime = get_all_anime(total_pages)
                 scrape_flag = True
 
             anime = input("Enter the name of the anime:> ")
             if anime_exists(anime):
-                current_progress = anime_progress(anime)
+                if check_seasonal_anime(anime, all_anime):
+                    current_progress = anime_progress(anime)
 
-                unwatched_episodes = track_anime(current_progress[0], int(current_progress[1]), all_anime)
+                    unwatched_episodes = track_anime(current_progress[0], int(current_progress[1]), all_anime)
 
-                if len(unwatched_episodes) == 0:
-                    print("You are up to date!")
-                else:
-                    print(f"You have {len(unwatched_episodes)} episodes to watch.")
-                    download_prompt = input("Download and add to qBittorrent? Yes/No:> ")
-                    if download_prompt.lower() == "yes":
-                        for row in unwatched_episodes:
-                            download_torrent(f"https://nyaa.si/download/{row[-1]}.torrent")
-                            print(f"Downloaded {row[0]} Episode: {row[1]}")
-                            add_torrent(f"{row[-1]}.torrent")
-                            print("Added to torrent!\n")
-                            os.remove(f"{row[-1]}.torrent")
-
+                    if len(unwatched_episodes) == 0:
+                        print("You are up to date!")
                     else:
-                        print("\nOkay!")
+                        print(f"You have {len(unwatched_episodes)} episodes to watch.")
+                        download_prompt = input("Download and add to qBittorrent? Yes/No:> ")
+                        if download_prompt.lower() == "yes":
+                            for row in unwatched_episodes:
+                                download_torrent(f"https://nyaa.si/download/{row[-1]}.torrent")
+                                print(f"Downloaded {row[0]} Episode: {row[1]}")
+                                add_torrent(f"{row[-1]}.torrent")
+                                print("Added to torrent!\n")
+                                os.remove(f"{row[-1]}.torrent")
+
+                        else:
+                            print("\nOkay!")
+                else:
+                    print("The anime is not being aired this season.")
             else:
                 print("\nAnime does not exist")
         elif choice == "6":
