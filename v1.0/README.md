@@ -1,5 +1,5 @@
 ## v1.0: "Zangetsu"
-
+This is the initial rudimentary version of the Anime Tracker app. The UI is just the command line and we use a txt file as the database.
 #### Installation
 
 - For the Python/Non-Windows build, download the [Python folder](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.0/python) and run the app.py file.
