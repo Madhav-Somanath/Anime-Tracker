@@ -15,6 +15,7 @@ ctx.verify_mode = ssl.CERT_NONE
 # Constants
 DATABASE_PATH = "resources/anime.txt"
 HORRIBLE_SUBS_NYAA = "https://nyaa.si/?f=0&c=0_0&q=%5BHorribleSubs%5D"
+# QBITTORENT_PATH = "C:\Program Files\qBittorrent\qbittorrent.exe"
 
 
 def open_url(url: str) -> object:
@@ -97,7 +98,7 @@ def track_anime(anime: str, watched_ep: int, all_anime: list) -> list:
     return unwatched
 
 
-def add_torrent(file_path: str) -> None:
+def add_torrent(file_path: str) -> bool:
     """
     Function to add torrent file to qbittorrent app.
     :param file_path: Path to the downloaded torrent file.
@@ -108,9 +109,10 @@ def add_torrent(file_path: str) -> None:
         qb = Client('http://127.0.0.1:8080/')
         torrent_file = open(file_path, 'rb')
         qb.download_from_file(torrent_file)
-        print("Torrent added. Starting download.")
+        return True
     except requests.exceptions.ConnectionError:
         print("qBittorrent app is not open.")
+        return False
 
 
 def download_torrent(url: str) -> None:
@@ -250,6 +252,7 @@ def main():
         print()
 
     scrape_flag = False
+    qbittorent_flag = False
     all_anime = []
     while True:
         choice = input("""\nKon'nichiwa! Hajimemashite!
@@ -301,6 +304,11 @@ Enter your choice:> """)
                 print()
 
         elif choice == "5":
+            # Code to start qbittorent in windows. Fix after learning concurrency.
+            # if not qbittorent_flag:
+            #     os.system(f'cmd /k "{QBITTORENT_PATH}"')
+            #     qbittorent_flag = True
+
             if not scrape_flag:
                 soup = open_url(HORRIBLE_SUBS_NYAA)
                 print('Connection established to website')
@@ -325,8 +333,10 @@ Enter your choice:> """)
                             for row in unwatched_episodes:
                                 download_torrent(f"https://nyaa.si/download/{row[-1]}.torrent")
                                 print(f"Downloaded {row[0]} Episode: {row[1]}")
-                                add_torrent(f"{row[-1]}.torrent")
-                                print("Added to torrent!\n")
+                                if add_torrent(f"{row[-1]}.torrent"):
+                                    print("Torrent added. Starting download.\n")
+                                else:
+                                    print("Couldn't add torrent!")
                                 os.remove(f"{row[-1]}.torrent")
 
                         else:
@@ -337,6 +347,10 @@ Enter your choice:> """)
                 print("\nAnime does not exist")
 
         elif choice == "6":
+            # Code to start qbittorent in windows. Fix after learning concurrency.
+            # if not qbittorent_flag:
+            #     os.system(f'cmd /k "{QBITTORENT_PATH}"')
+            #     qbittorent_flag = True
             # Code to scrape
             if not scrape_flag:
                 soup = open_url(HORRIBLE_SUBS_NYAA)
@@ -360,15 +374,17 @@ Enter your choice:> """)
                             for row in unwatched_episodes:
                                 download_torrent(f"https://nyaa.si/download/{row[-1]}.torrent")
                                 print(f"Downloaded {row[0]} Episode: {row[1]}")
-                                add_torrent(f"{row[-1]}.torrent")
-                                print("Added to torrent!\n")
+                                if add_torrent(f"{row[-1]}.torrent"):
+                                    print("Torrent added. Starting download.\n")
+                                else:
+                                    print("Couldn't add torrent!")
                                 os.remove(f"{row[-1]}.torrent")
                         else:
                             print("\nOkay!")
                 else:
-                    print(f"\n{anime[0]} is not this season's anime !")
+                    print(f"\n{anime[0]} is not this season's anime!")
 
-                print("Checked all anime!")
+            print("\nChecked all anime!")
 
         elif choice == "7":
             break
