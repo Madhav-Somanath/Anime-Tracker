@@ -9,6 +9,9 @@ And if it has, it gives you the option to download and add the torrent to your t
 - For the Linux build, download the [Python folder](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.0/python) and run the app.py file. Make sure you have Python3 installed.
 - For the Windows build, download the [windows folder](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.0/windows) and run the app.exe file.
 
+#### User Guide
+- Make sure you type the name of the anime exactly as it is in the [HorribleSubs](https://horriblesubs.info/) website, while adding the anime to the database.
+
 #### Software Requirements
 - This app uses qBitorrent as the Web UI to add torrents. So make sure you have the app installed. You can install it from [here](https://www.qbittorrent.org/download.php).
 - You also will have to set up enable the Web UI functionality in the qBittorent app. Make sure you click the check box ```Bypass authentication for clients on localhost.``` For more details, click [here](https://github.com/lgallard/qBittorrent-Controller/wiki/How-to-enable-the-qBittorrent-Web-UI).
