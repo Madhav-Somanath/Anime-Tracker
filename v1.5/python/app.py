@@ -136,7 +136,7 @@ def check_seasonal_anime(anime: str, all_anime: list) -> bool:
     :return: True if anime in the current season else False.
     """
     for seasonal_anime in all_anime:
-        if anime in seasonal_anime[0]:
+        if anime.lower() in seasonal_anime[0].lower():
             return True
     return False
 
@@ -171,7 +171,7 @@ def anime_exists(anime_name):
 
     with open(DATABASE_PATH, "r") as file:
         for line in file:
-            if anime_name in line.split("~")[0]:
+            if anime_name.lower() in line.split("~")[0].lower():
                 return True
     return False
 
@@ -192,7 +192,7 @@ def update_anime(anime_name, episode):
 
     for idx, anime_ in enumerate(anime_data):
         line_list = anime_.split("~")
-        if anime_name in line_list[0]:
+        if anime_name.lower() in line_list[0].lower():
             anime_full_name = line_list[0]
             anime_data[idx] = f"{line_list[0]}~{episode}~{line_list[2]}"
             break
@@ -218,7 +218,7 @@ def anime_progress(anime_name):
     with open(DATABASE_PATH, "r") as file:
         for line in file:
             line_list = line.split("~")
-            if anime_name in line_list[0]:
+            if anime_name.lower() in line_list[0].lower():
                 return tuple([line_list[0], line_list[1], line_list[2].rstrip("\n")])
 
 
