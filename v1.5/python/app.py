@@ -86,7 +86,7 @@ def track_anime(anime: str, watched_ep: int, all_anime: list) -> list:
     """
     remote_data = []
     for row in all_anime:
-        if anime in row[0]:
+        if anime.lower().replace(" ", "") in row[0].lower().replace(" ", ""):
             temp = re.findall("\[HorribleSubs\] (.+?) - ([0-9]+?) \[720p\].mkv", row[0])
             remote_data.append((temp[0][0], int(temp[0][1]), row[1]))
 
@@ -136,7 +136,7 @@ def check_seasonal_anime(anime: str, all_anime: list) -> bool:
     :return: True if anime in the current season else False.
     """
     for seasonal_anime in all_anime:
-        if anime.lower() in seasonal_anime[0].lower():
+        if anime.lower().replace(" ", "") in seasonal_anime[0].lower().replace(" ", ""):
             return True
     return False
 
@@ -171,7 +171,7 @@ def anime_exists(anime_name):
 
     with open(DATABASE_PATH, "r") as file:
         for line in file:
-            if anime_name.lower() in line.split("~")[0].lower():
+            if anime_name.lower().replace(" ", "") in line.split("~")[0].lower().replace(" ", ""):
                 return True
     return False
 
@@ -192,7 +192,7 @@ def update_anime(anime_name, episode):
 
     for idx, anime_ in enumerate(anime_data):
         line_list = anime_.split("~")
-        if anime_name.lower() in line_list[0].lower():
+        if anime_name.lower().replace(" ", "") in line_list[0].lower().replace(" ", ""):
             anime_full_name = line_list[0]
             anime_data[idx] = f"{line_list[0]}~{episode}~{line_list[2]}"
             break
@@ -218,7 +218,7 @@ def anime_progress(anime_name):
     with open(DATABASE_PATH, "r") as file:
         for line in file:
             line_list = line.split("~")
-            if anime_name.lower() in line_list[0].lower():
+            if anime_name.lower().replace(" ", "") in line_list[0].lower().replace(" ", ""):
                 return tuple([line_list[0], line_list[1], line_list[2].rstrip("\n")])
 
 
@@ -252,7 +252,7 @@ def main():
         print()
 
     scrape_flag = False
-    qbittorent_flag = False
+    # qbittorent_flag = False
     all_anime = []
     while True:
         choice = input("""\nKon'nichiwa! Hajimemashite!
