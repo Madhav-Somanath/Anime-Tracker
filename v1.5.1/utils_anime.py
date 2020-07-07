@@ -62,7 +62,7 @@ def view_anime_progress():
     view(anime_in_database)
 
 
-def update_anime():
+def update_anime(anime_id=None, current_episode=None):
     """
     Function to update anime in database.
     :return: None
@@ -70,13 +70,14 @@ def update_anime():
     anime_in_database = get_all_anime()
     view(anime_in_database)
 
-    choice = int(input("Enter the id from the list above: "))
-    if choice > len(anime_in_database):
-        print("Invalid choice")
+    if anime_id is None:
+        choice = int(input("Enter the id from the list above: "))
+    if anime_id is None and choice > len(anime_in_database):
+        print("Invalid choice\n")
     else:
-        anime_id = anime_in_database[choice - 1][0]
-
-        current_episode = int(input("Enter the current episode: "))
+        if anime_id is None:
+            anime_id = anime_in_database[choice - 1][0]
+            current_episode = int(input("Enter the current episode: "))
         with sqlite3.connect(f'{DATABASE_NAME}.s3db') as conn:
             cur = conn.cursor()
             query = "UPDATE" \
@@ -88,7 +89,7 @@ def update_anime():
                     ";"
             cur.execute(query)
             conn.commit()
-            print(f"Data of {anime_in_database[choice - 1][1]} updated! \n")
+            print("Episode count updated!")
 
 # Table schema
 #         "CREATE TABLE anime("  \

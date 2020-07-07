@@ -4,7 +4,7 @@ from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
 
-from utils_anime import get_all_anime
+from utils_anime import get_all_anime, update_anime
 from utils_torrent import *
 
 # Ignore SSL certificate errors
@@ -41,7 +41,7 @@ def scrape_data() -> list:
     total_pages = TOTAL_PAGES
     titles = []
 
-    print("Connected to website")
+    print("Connecting to website")
     for page in range(1, total_pages + 1):
         print(f"Processing page: {page}/{total_pages}")
         url = f"https://nyaa.si/?f=0&c=0_0&q=[HorribleSubs]&p={page}"
@@ -100,8 +100,10 @@ def check_new_episodes(all_anime):
                     print(f"Downloaded {row[0]} Episode: {row[1]}")
                     if add_torrent(f"{row[-1]}.torrent"):
                         print("Torrent added. Starting download.\n")
+                        update_anime(anime[0], row[1])
                     else:
                         print("Couldn't add torrent!")
                     os.remove(f"{row[-1]}.torrent")
             else:
                 print("\nOkay!")
+    print("Checked all anime!\n")
