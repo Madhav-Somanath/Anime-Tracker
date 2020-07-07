@@ -1,5 +1,4 @@
 import os
-import re
 import ssl
 from urllib.request import urlopen
 
