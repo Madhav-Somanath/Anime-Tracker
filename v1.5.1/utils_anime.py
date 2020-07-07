@@ -67,10 +67,9 @@ def update_anime(anime_id=None, current_episode=None):
     Function to update anime in database.
     :return: None
     """
-    anime_in_database = get_all_anime()
-    view(anime_in_database)
-
     if anime_id is None:
+        anime_in_database = get_all_anime()
+        view(anime_in_database)
         choice = int(input("Enter the id from the list above: "))
     if anime_id is None and choice > len(anime_in_database):
         print("Invalid choice\n")
@@ -89,7 +88,7 @@ def update_anime(anime_id=None, current_episode=None):
                     ";"
             cur.execute(query)
             conn.commit()
-            print("Episode count updated!")
+            print("Episode count updated!\n")
 
 # Table schema
 #         "CREATE TABLE anime("  \
