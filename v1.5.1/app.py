@@ -5,6 +5,7 @@ from utils_scrape import check_new_episodes, scrape_data
 def main():
     scrape_flag = False
 
+    view_anime_progress()
     while True:
         choice = input("""Kon'nichiwa! Hajimemashite!
 What do you want to do?
