@@ -21,7 +21,7 @@ Is downloading new episodes a hassle? Don't fret! **Tensa Zangetsu** does it for
 Built for both [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.5/python) and [Windows](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.5/windows).
 
 ### v1.5.1: "True Tensa Zangetsu" 
-In this final build of the **Zangetsu** series, we migrated the data from our txt file to a proper database. Is the same UI though!
+In this final build of the **Zangetsu** series, we migrated the data from our txt file to a proper database. Is the same UI though! <br />
 Built for [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.5.1)
 
 ### v2.0: "Zabimaru" (Under Development)
