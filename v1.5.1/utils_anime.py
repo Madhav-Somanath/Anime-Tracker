@@ -4,7 +4,11 @@ DATABASE_NAME = "anime_database"
 TABLE_NAME = "anime"
 
 
-def add_anime():
+def add_anime() -> None:
+    """
+    Function to add anime to database.
+    :return: None
+    """
     anime_name = input("Enter the name of the anime: ")
     current_episode = int(input("Enter the current episode number: "))
     total_episodes = int(input("Enter the total number of episodes: "))
@@ -22,7 +26,13 @@ def add_anime():
     print(f"\nSuccess!\nAdded {anime_name} to database.\n")
 
 
-def get_all_anime():
+def get_all_anime() -> list:
+    """
+    Function to get all the anime in the database.
+    :return anime_in_database:
+        tuple of tuples: Tuple of Tuples in the format ((id, anime-name, current-episode, total-episodes))
+    """
+
     with sqlite3.connect(f'{DATABASE_NAME}.s3db') as conn:
         cur = conn.cursor()
         query = f"SELECT * FROM {TABLE_NAME};"
@@ -31,7 +41,12 @@ def get_all_anime():
     return anime_in_database
 
 
-def view(anime_in_database):
+def view(anime_in_database) -> None:
+    """
+    Function to display all the anime in the database.
+    :param anime_in_database: list
+    :return: None
+    """
     print("\nCurrent Anime Watchlist:")
     for idx, anime in enumerate(anime_in_database):
         print(f"{idx + 1}. {anime[1]}: {anime[2]}/{anime[3]}")
@@ -39,11 +54,19 @@ def view(anime_in_database):
 
 
 def view_anime_progress():
+    """
+    Driver function to view data.
+    :return: None
+    """
     anime_in_database = get_all_anime()
     view(anime_in_database)
 
 
 def update_anime():
+    """
+    Function to update anime in database.
+    :return: None
+    """
     anime_in_database = get_all_anime()
     view(anime_in_database)
 
