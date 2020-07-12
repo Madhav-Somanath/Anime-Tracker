@@ -90,6 +90,27 @@ def update_anime(anime_id=None, current_episode=None):
             conn.commit()
             print("Episode count updated!\n")
 
+
+def delete_anime(anime_id=None, current_episode=None):
+    if anime_id is None:
+        anime_in_database = get_all_anime()
+        view(anime_in_database)
+        choice = int(input("Enter the id from the list above: "))
+    if anime_id is None and choice > len(anime_in_database):
+        print("Invalid choice\n")
+    else:
+        if anime_id is None:
+            anime_id = anime_in_database[choice - 1][0]
+        with sqlite3.connect(f'{DATABASE_NAME}.s3db') as conn:
+            cur = conn.cursor()
+            query = "DELETE FROM " \
+                    f"{TABLE_NAME} " \
+                    f"WHERE" \
+                    f" id = {anime_id};"
+            cur.execute(query)
+            conn.commit()
+            print(f"Anime deleted from database!\n")
+
 # Table schema
 #         "CREATE TABLE anime("  \
 #         "id INTEGER PRIMARY KEY AUTOINCREMENT," \

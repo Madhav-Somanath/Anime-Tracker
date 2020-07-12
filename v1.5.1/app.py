@@ -1,4 +1,4 @@
-from utils_anime import add_anime, update_anime, view_anime_progress
+from utils_anime import add_anime, update_anime, view_anime_progress, delete_anime
 from utils_scrape import check_new_episodes, scrape_data
 
 
@@ -12,8 +12,9 @@ What do you want to do?
 1. Add new anime
 2. Update progress on existing anime
 3. All currently watching anime
-4. Check for new episodes of all currently watching anime.
-5. Exit
+4. Check for new episodes of all currently watching anime
+5. Delete Anime
+6. Exit
 Enter your choice:> """)
 
         if choice == '1':
@@ -28,6 +29,8 @@ Enter your choice:> """)
                 scrape_flag = True
             check_new_episodes(all_anime)
         elif choice == '5':
+            delete_anime()
+        elif choice == '6':
             print("Sayonara!")
             break
 
