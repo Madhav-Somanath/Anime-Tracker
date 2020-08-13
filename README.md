@@ -25,7 +25,7 @@ In this final build of the **Zangetsu** series, we migrated the data from our tx
 Built for [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.5.1)
 
 ### v2.0: "Zabimaru" (Under Development)
-A minimalistic GUI app built using Flask.
+A minimalistic app built using Flask.
 
 ## References
 The app versions are all named after [Zanpakutos](https://bleach.fandom.com/wiki/Zanpakut%C5%8D) from the anime [Bleach](https://en.wikipedia.org/wiki/Bleach_(TV_series)).
