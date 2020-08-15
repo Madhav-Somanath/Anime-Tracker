@@ -4,15 +4,11 @@ DATABASE_NAME = "anime_database"
 TABLE_NAME = "anime"
 
 
-def add_anime() -> None:
+def add_anime(anime_name, current_episode, total_episodes) -> None:
     """
     Function to add anime to database.
     :return: None
     """
-    anime_name = input("Enter the name of the anime: ")
-    current_episode = int(input("Enter the current episode number: "))
-    total_episodes = int(input("Enter the total number of episodes: "))
-
     with sqlite3.connect(f'{DATABASE_NAME}.s3db') as conn:
         cur = conn.cursor()
         query = "INSERT INTO " \

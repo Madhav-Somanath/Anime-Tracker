@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/common.css') }}">
+
+        <meta charset="UTF-8">
+        <title>Add new anime</title>
+        <style>
+            #data {
+                border: 1px solid black;
+                width: 400px;
+                margin: 100px auto auto auto;
+                padding: 30px;
+            }
+            label {
+                text-align: right;
+                font-size: larger;
+            }
+            #success-message {
+                font-size: small;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div>
+            <h1>Add new anime</h1>
+        </div>
+
+        <div id="data">
+
+            <form action="/add-anime" method="post">    {{ form.csrf_token() }}
+                {{ form.anime_name.label }} {{ form.anime_name }} <br><br>
+                {{ form.current_episode.label }} {{ form.current_episode }}<br><br>
+                {{ form.total_episodes.label }} {{ form.total_episodes }}<br><br>
+                {{ form.submit }}
+            </form>
+
+            {% if anime_name %}
+                <p id="success-message">Anime: "{{ anime_name }}" successfully added to database!</p>
+            {% endif %}
+            <br>
+            <a href="/">< Back to main page</a>
+
+        </div>
+
+    </body>
+</html>
