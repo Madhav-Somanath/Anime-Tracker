@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/common.css') }}">
+
+        <meta charset="UTF-8">
+        <title>Anime Tracker</title>
+        <style>
+            a {
+                font-size: x-large;
+            }
+            #menu {
+                border: 1px solid black;
+                width: 500px;
+                margin: 100px auto auto auto;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div>
+            <h1>Anime Tracker</h1>
+        </div>
+
+        <div>
+            <div id="menu">
+                <ul>
+                    <li><a href="/add-anime">Add new anime</a></li>
+                    <li><a href="/update-anime">Update progress on existing anime</a></li>
+                    <li><a href="/all-anime">All currently watching anime</a></li>
+                    <li><a href="check-anime">Check and download new episodes</a></li>
+                    <li><a href="delete-anime">Delete Anime</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </body>
+</html>

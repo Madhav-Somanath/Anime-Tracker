@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/common.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
+
+        <meta charset="UTF-8">
+        <title>Check new anime</title>
+        <style>
+            #check-button {
+                font-size: larger;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1> Check for new anime </h1>
+        </div>
+        <div id="menu">
+            {% if data %}
+                <form action="/check-anime" method="post">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th> Anime </th>
+                            <th> Number of unwatched episodes </th>
+                            <th></th>
+                        </tr>
+                        {% for anime in data %}
+                            <tr>
+                                <td> {{ loop.index }} </td>
+                                <td> {{ anime }} </td>
+                                <td> {{ data[anime]|length }} </td>
+                                <td><button name="download-button" type="submit" value="{{ anime }}"> Download </button></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </form>
+
+                <br><br>
+                <a href="/check-anime"> < Go Back </a>
+            {% else %}
+                <form method="post" action="/check-anime">
+                    <input id="check-button" type="submit" name="check_anime_button" value="Click here to check">
+                </form>
+            {% endif %}
+
+
+
+            <br><br>
+            <a href="/"> < Back to main page </a>
+        </div>
+    </body>
+</html>

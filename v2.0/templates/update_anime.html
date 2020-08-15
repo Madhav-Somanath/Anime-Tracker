@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/common.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
+
+        <meta charset="UTF-8">
+        <title>Update Anime</title>
+        <style>
+        </style>
+    </head>
+    <body>
+
+        <div>
+            <h1>Update anime</h1>
+        </div>
+
+        <div id="menu">
+            <form method="post" action="/update-anime">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Anime</th>
+                        <th>Current episode</th>
+                        <th>Total episodes</th>
+                    </tr>
+                    {% for anime in all_anime %}
+                        <tr>
+                            <td> {{ loop.index }} </td>
+                            <td> {{ anime[1] }} </td>
+                            <td> <input type="text" name="current-episode-{{ anime[0] }}"> </td>        <!-- We give unique names to input fields   -->
+                            <td> <input type="text" name="total-episodes-{{ anime[0] }}"> </td>
+                            <td> <button name="anime-id" type="submit" value="{{ anime[0] }}">Update</button> </td>
+
+                        </tr>
+
+                    {% endfor %}
+                </table>
+            </form>
+            {%  if success %}
+            <h3>Anime successfully updated!</h3>
+            {% endif %}
+            <br>
+            <a href="/">< Back to main page</a>
+        </div>
+
+
+    </body>
+</html>

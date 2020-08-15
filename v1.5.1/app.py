@@ -18,7 +18,10 @@ What do you want to do?
 Enter your choice:> """)
 
         if choice == '1':
-            add_anime()
+            anime_name = input("Enter the name of the anime: ")
+            current_episode = int(input("Enter the current episode number: "))
+            total_episodes = int(input("Enter the total number of episodes: "))
+            add_anime(anime_name, current_episode, total_episodes)
         elif choice == '2':
             update_anime()
         elif choice == '3':

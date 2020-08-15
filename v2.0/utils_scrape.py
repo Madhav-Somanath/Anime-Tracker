@@ -4,7 +4,7 @@ from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
 
-from utils_anime import get_all_anime, update_anime
+from utils_database import get_all_anime_from_database, update_anime_in_database
 from utils_torrent import *
 
 # Ignore SSL certificate errors
@@ -35,7 +35,7 @@ def scrape_data() -> list:
     """
     Get all the anime listed on all the pages of the website.
 
-    :return: List containing the name and the torrent id of the episode.
+    :return: List of tuples containing the name and the torrent id of the episode.
                 eg: [('[HorribleSubs] Tower of God - 08 [720p].mkv', '1249430')]
     """
     total_pages = TOTAL_PAGES
@@ -85,25 +85,14 @@ def track_anime(anime: str, watched_ep: int, all_anime: list) -> list:
 
 
 def check_new_episodes(all_anime):
-    all_current_anime = get_all_anime()
+    all_current_anime = get_all_anime_from_database()
+    return_data = {}
+    anime_id_mapping = {}
     for anime in all_current_anime:
         unwatched_episodes = track_anime(anime[1], int(anime[2]), all_anime)
 
-        if len(unwatched_episodes) == 0:
-            print(f"\nYou are up to date in {anime[1]}!")
-        else:
-            print(f"\nYou have {len(unwatched_episodes)} episodes to watch in {anime[1]}.")
-            download_prompt = input("Download and add to qBittorrent? Yes/No:> ")
-            if download_prompt == "" or download_prompt.lower() == "yes":
-                for row in unwatched_episodes:
-                    download_torrent(f"https://nyaa.si/download/{row[-1]}.torrent")
-                    print(f"Downloaded {row[0]} Episode: {row[1]}")
-                    if add_torrent(f"{row[-1]}.torrent"):
-                        print("Torrent added. Starting download.\n")
-                        update_anime(anime[0], row[1])
-                    else:
-                        print("Couldn't add torrent!")
-                    os.remove(f"{row[-1]}.torrent")
-            else:
-                print("\nOkay!")
-    print("Checked all anime!\n")
+        if len(unwatched_episodes) > 0:
+            return_data[anime[1]] = unwatched_episodes
+            anime_id_mapping[anime[1]] = anime[0]
+
+    return return_data, anime_id_mapping
