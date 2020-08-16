@@ -31,6 +31,9 @@ A minimalistic app built using Flask.
 
 Built for [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v2.0)
 
+### v2.5: Hihiō Zabimaru (Under Development)
+We use bootstrap to style it up a bit
+
 ## References
 The app versions are all named after [Zanpakutos](https://bleach.fandom.com/wiki/Zanpakut%C5%8D) from the anime [Bleach](https://en.wikipedia.org/wiki/Bleach_(TV_series)).
 
