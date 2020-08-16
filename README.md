@@ -25,14 +25,17 @@ In this final build of the **Zangetsu** series, we migrated the data from our tx
 Built for [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v1.5.1)
 
 ### v2.0: ["Zabimaru"](https://github.com/ashwindasr/Anime-Tracker/tree/master/v2.0)
-A minimalistic app built using Flask.
+The anime tracker app built using Flask.
 
 ![alt text](https://github.com/ashwindasr/Anime-Tracker/blob/master/assets/images/img3.png)
 
 Built for [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v2.0)
 
 ### v2.5: Hihiō Zabimaru (Under Development)
-We use bootstrap to style it up a bit
+We use bootstrap to style it up a bit.
+
+### v3.0: Sode no Shirayuki (Under Development)
+The anime tracker app built using Tkinter.
 
 ## References
 The app versions are all named after [Zanpakutos](https://bleach.fandom.com/wiki/Zanpakut%C5%8D) from the anime [Bleach](https://en.wikipedia.org/wiki/Bleach_(TV_series)).
