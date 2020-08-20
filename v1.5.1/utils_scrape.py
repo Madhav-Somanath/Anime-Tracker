@@ -95,15 +95,18 @@ def check_new_episodes(all_anime):
             print(f"\nYou have {len(unwatched_episodes)} episodes to watch in {anime[1]}.")
             download_prompt = input("Download and add to qBittorrent? Yes/No:> ")
             if download_prompt == "" or download_prompt.lower() == "yes":
+                latest_episode_number = 0
                 for row in unwatched_episodes:
                     download_torrent(f"https://nyaa.si/download/{row[-1]}.torrent")
                     print(f"Downloaded {row[0]} Episode: {row[1]}")
                     if add_torrent(f"{row[-1]}.torrent"):
                         print("Torrent added. Starting download.\n")
-                        update_anime(anime[0], row[1])
+                        latest_episode_number = max(latest_episode_number, row[1])
+
                     else:
                         print("Couldn't add torrent!")
                     os.remove(f"{row[-1]}.torrent")
+                update_anime(anime[0], latest_episode_number)
             else:
                 print("\nOkay!")
     print("Checked all anime!\n")
