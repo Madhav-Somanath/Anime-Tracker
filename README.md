@@ -37,7 +37,7 @@ We use bootstrap to style it up a bit.
 ![alt text](https://github.com/ashwindasr/Anime-Tracker/blob/master/assets/images/img10.png)
 
 ### v3.0: Sode no Shirayuki (Under Development)
-The anime tracker app built using Tkinter.
+The anime tracker app built using Django.
 
 ## References
 The app versions are all named after [Zanpakutos](https://bleach.fandom.com/wiki/Zanpakut%C5%8D) from the anime [Bleach](https://en.wikipedia.org/wiki/Bleach_(TV_series)).
