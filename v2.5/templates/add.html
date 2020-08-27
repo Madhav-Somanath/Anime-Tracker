@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block navbar_active_add %}active{% endblock %}
+
+{% block banner_name %}New anime{% endblock %}
+
+{% block main %}
+
+    <div class="row justify-content-center mt-5">
+        <div>
+            <div class="p-4 mt-3 bg-white rounded shadow-sm">
+                <form method="post" action="{{ url_for("add_anime") }}"><input type="hidden" name="csrf_token"
+                                                                               value="{{ csrf_token() }}"/>
+                    <div class="form-group row">
+                        <div class="col-sm-5">
+                            <label class="col-form-label">Anime Name: </label>
+                            <small class="form-text text-muted">(As in <a
+                                    href="https://horriblesubs.info/">HorribleSubs</a>)</small>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control {{ anime_name_check }}" name="anime-name"
+                                   value="{{ anime_name }}" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Current
+                            Episode:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control {{ current_episode_check }}" name="current-episode"
+                                   value="{{ current_episode }}"
+                                   required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Enter a number
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Total
+                            Episodes:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control {{ total_episode_check }}" name="total-episodes"
+                                   value="{{ total_episodes }}" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Enter a number
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row justify-content-center mt-5">
+                    <div class="col-">
+                        <div class="alert alert-{{ alert_color }}">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}
