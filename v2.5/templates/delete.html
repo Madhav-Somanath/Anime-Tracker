@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block navbar_active_delete %}active{% endblock %}
+
+{% block banner_name %}Delete anime{% endblock %}
+
+{% block main %}
+
+    {% if flag %}
+    <div class="container-fluid">
+        <form action="{{ url_for('delete_anime', anime_id=anime_id) }}" method="post"><input type="hidden" name="csrf_token"
+                                                                                     value="{{ csrf_token() }}"/>
+            <p>Are you sure you want to delete the following anime?</p>
+            <div class="row">
+                <div class="col">
+                    <h3>{{ anime_name }}</h3>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-danger" name="delete_button" value="Submit">Delete</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row justify-content-center mt-5">
+                    <div class="col-">
+                        <div class="alert alert-primary">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
