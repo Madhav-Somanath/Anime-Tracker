@@ -31,7 +31,7 @@ The anime tracker app built using Flask.
 
 Built for [Python](https://github.com/ashwindasr/Anime-Tracker/tree/master/v2.0)
 
-### v2.5: Hihiō Zabimaru (Under Development)
+### v2.5: Hihiō Zabimaru
 We use bootstrap to style it up a bit.
 
 ![alt text](https://github.com/ashwindasr/Anime-Tracker/blob/master/assets/images/img10.png)
