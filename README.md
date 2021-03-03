@@ -1,4 +1,5 @@
 # Anime-Tracker
+_The auto-download feature has been suspended as the site horriblesubs.info no longer exists_
 ## About
 A Python app to keep track of your anime progress.
 ## Description
